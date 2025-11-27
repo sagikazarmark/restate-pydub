@@ -1,0 +1,12 @@
+__pycache__
+.pytest_cache
+.DS_Store
+.env
+.env.local
+var/
+
+# Devenv
+/.devenv*
+/.direnv/
+devenv.local.nix
+.pre-commit-config.yaml

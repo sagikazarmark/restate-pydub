@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions: read-all
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+
+      - name: Set up environment
+        uses: ./.github/actions/devenv/
+        with:
+          build: "true"
+
+      - name: Build
+        shell: devenv shell bash -- -e {0}
+        run: echo
+
+      # - name: Run tests
+      #   shell: devenv shell bash -- -e {0}
+      #   run: uv run pytest
+
+      - name: Run tests
+        shell: devenv shell bash -- -e {0}
+        run: uv run ruff check

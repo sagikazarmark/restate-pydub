@@ -1,0 +1,11 @@
+/.devenv*
+/.direnv/
+__pycache__/
+/var/
+.env
+.env.local
+.pre-commit-config.yaml
+devenv.local.nix
+
+# Make sure uv works with the Python version in the Dockerfile
+.python-version

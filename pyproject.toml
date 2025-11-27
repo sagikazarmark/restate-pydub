@@ -1,0 +1,51 @@
+[project]
+name = "restate-pydub"
+version = "0.1.0"
+description = "A Restate service for Pydub"
+readme = "README.md"
+authors = [
+    { name = "Mark Sagi-Kazar", email = "mark.sagikazar@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "audioop-lts>=0.2.2",
+    "pydantic>=2.12.4",
+    "pydub>=0.25.1",
+    "restate-sdk[serde]>=0.11.0",
+]
+
+[project.optional-dependencies]
+app = [
+    "granian[pname,reload]>=2.5.7",
+    "pydantic-settings>=2.12.0",
+    "obstore>=0.8.2",
+    "pydantic-obstore",
+    "workstate[obstore]",
+    "structlog>=25.5.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.8.23,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv.sources]
+workstate = { git = "https://github.com/sagikazarmark/workstate", rev = "v0.0.11" }
+pydantic-obstore = { git = "https://github.com/sagikazarmark/pydantic-obstore", rev = "v0.0.4" }
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.1",
+    "ruff>=0.14.6",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--strict-markers",
+    "--disable-warnings",
+]
