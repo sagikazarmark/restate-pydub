@@ -32,7 +32,7 @@ FROM python:3.14.0-slim@sha256:0aecac02dc3d4c5dbb024b753af084cafe41f5416e02193f1
 WORKDIR /usr/src/app
 
 RUN apt-get update && \
-    apt-get install -y ffmpeg libav-tools libavcodec-extra && \
+    apt-get install -y ffmpeg && \
     rm -rf /var/lib/apt/lists/*
 
 COPY --from=deno /deno /usr/local/bin/deno
